@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waduge Travels - School Transport Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-header">
+        <img src="waduge-travels-logo.png" alt="Waduge Travels Logo" class="logo">
+        <div class="brand-text">
+          <h1>Waduge Travels</h1>
+          <div class="luxury-marquee">
+            <span>Safety Is Our Priority</span>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <button class="tab-btn active" onclick="openTab('home')">Dashboard</button>
+        <button class="tab-btn" onclick="openTab('students')">Student Records</button>
+        <button class="tab-btn" onclick="openTab('attendance')">Attendance</button>
+        <button class="tab-btn" onclick="openTab('summary')">Summary Reports</button>
+        <button class="tab-btn" onclick="openTab('routes')">Route Management</button>
+      </nav>
+    </header>
+
+    <!-- Home Tab -->
+    <div id="home" class="tab-content active-tab">
+      <div class="welcome-section">
+        <h2>Transport Management Dashboard</h2>
+        <div class="date-display" id="current-date"></div>
+        <div class="quick-stats">
+          <div class="stat-card">
+            <div class="stat-icon">👨‍🎓</div>
+            <h3>Total Students</h3>
+            <p id="home-total-students">0</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <h3>Today's Attendance</h3>
+            <div class="attendance-status">
+              <div><span class="present-label">Present:</span><span id="present-today">0</span></div>
+              <div><span class="absent-label">Absent:</span><span id="absent-today">0</span></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💵</div>
+            <h3>Payment Status</h3>
+            <div class="payment-status">
+              <div><span class="paid-label">Paid</span><span id="paid-count">0</span></div>
+              <div><span class="pending-label">Pending</span><span id="unpaid-count">0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Records Tab -->
+    <div id="students" class="tab-content">
+      <div class="student-form">
+        <h3>Add New Student</h3>
+        <form id="add-student-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="student-name" placeholder="Student Name" required>
+              <div class="error-message" id="name-error"></div>
+            </div>
+            <div class="form-group">
+              <select id="student-gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div class="error-message" id="gender-error"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="tel" id="student-contact" placeholder="Contact Number (optional)">
+              <div class="error-message" id="contact-error"></div>
+            </div>
+            <div class="form-group">
+              <select id="student-route" required>
+                <option value="">Select Route</option>
+              </select>
+              <input type="text" id="student-route-other" placeholder="Enter custom route" style="display: none; margin-top: 5px;">
+              <div class="error-message" id="route-error"></div>
+            </div>
+          </div>
+          <button type="submit">Add Student</button>
+        </form>
+      </div>
+      
+      <div class="student-list">
+        <table id="student-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Contact</th>
+              <th>Route</th>
+              <th>Payment Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Attendance Tab -->
+    <div id="attendance" class="tab-content">
+      <div class="attendance-section">
+        <h2>Daily Attendance</h2>
+        <div class="attendance-controls">
+          <input type="date" id="attendance-date">
+          <button onclick="loadAttendance()">Load</button>
+        </div>
+        <table id="attendance-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Route</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Summary Reports Tab -->
+    <div id="summary" class="tab-content">
+      <div class="summary-section">
+        <h2>Historical Reports</h2>
+        
+        <div class="report-controls">
+          <div>
+            <label for="report-type">Report Type:</label>
+            <select id="report-type">
+              <option value="attendance">Attendance Summary</option>
+              <option value="payment">Payment Summary</option>
+            </select>
+          </div>
+          <div>
+            <label for="month-select">Month:</label>
+            <select id="month-select"></select>
+          </div>
+          <div>
+            <label for="year-select">Year:</label>
+            <select id="year-select"></select>
+          </div>
+          <div>
+            <label for="status-filter">Payment Status:</label>
+            <select id="status-filter">
+              <option value="all">All Students</option>
+              <option value="paid">Paid Only</option>
+              <option value="pending">Pending Only</option>
+            </select>
+          </div>
+          <button onclick="generateReport()">Generate Report</button>
+        </div>
+
+        <div class="report-results">
+          <div id="attendance-report" class="report">
+            <h3>Attendance Summary</h3>
+            <table id="attendance-summary-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Days Present</th>
+                  <th>Days Absent</th>
+                  <th>Attendance %</th>
+                </tr>
+              </thead>
+              <tbody id="attendance-summary-body"></tbody>
+            </table>
+          </div>
+
+          <div id="payment-report" class="report">
+            <h3>Payment Summary</h3>
+            <table id="payment-summary-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Payment Status</th>
+                  <th>Last Updated</th>
+                </tr>
+              </thead>
+              <tbody id="payment-summary-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Route Management Tab -->
+    <div id="routes" class="tab-content">
+      <div class="route-form">
+        <h3>Add New Route</h3>
+        <form id="add-route-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="route-name" placeholder="Route Name" required>
+              <div class="error-message" id="route-name-error"></div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="route-description" placeholder="Description">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="route-vehicle" placeholder="Vehicle Number">
+            </div>
+            <div class="form-group">
+              <input type="text" id="route-driver" placeholder="Driver Name">
+            </div>
+          </div>
+          <button type="submit">Add Route</button>
+        </form>
+      </div>
+      
+      <div class="route-list">
+        <h3>Route Statistics</h3>
+        <div class="route-cards" id="route-cards-container"></div>
+        
+        <h3>All Routes</h3>
+        <table id="route-table">
+          <thead>
+            <tr>
+              <th>Route Name</th>
+              <th>Description</th>
+              <th>Vehicle</th>
+              <th>Driver</th>
+              <th>Students</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="route-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Student Details Modal -->
+    <div id="student-details-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modal-student-name">Student Details</h2>
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Gender:</span>
+            <span id="modal-gender"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Contact:</span>
+            <span id="modal-contact"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Route:</span>
+            <span id="modal-route"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Payment Status:</span>
+            <span id="modal-payment"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Last Payment Update:</span>
+            <span id="modal-last-update"></span>
+          </div>
+        </div>
+        <div class="attendance-history">
+          <h3>Recent Attendance</h3>
+          <table id="attendance-history-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-history-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© <script>document.write(new Date().getFullYear())</script> Waduge Travels. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

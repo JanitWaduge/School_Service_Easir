@@ -1,0 +1,688 @@
+/* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f5f9fc;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(26, 82, 118, 0.1);
+}
+
+/* Header Styles */
+header {
+  background: #1A5276;
+  color: white;
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: white;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.luxury-marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 5px;
+}
+
+.luxury-marquee span {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-style: italic;
+  color: white;
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Navigation Styles */
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #D4AC0D;
+  color: #1A5276;
+}
+
+.tab-btn:hover {
+  background: #2980B9;
+}
+
+/* Tab Content Styles */
+.tab-content {
+  display: none;
+  padding: 25px;
+}
+
+.tab-content.active-tab {
+  display: block;
+}
+
+/* Home Tab Styles */
+.welcome-section {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.welcome-section h2 {
+  color: #1A5276;
+  margin-bottom: 30px;
+}
+
+.quick-stats {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: #1A5276;
+  color: white;
+  border-radius: 10px;
+  padding: 25px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  background: #2980B9;
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #F7DC6F;
+}
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.payment-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.payment-status div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.attendance-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.attendance-status div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.present-label {
+  color: #28a745; /* Green color matching your "paid" style */
+  font-weight: bold;
+}
+
+.absent-label {
+  color: #dc3545; /* Red color matching your "unpaid" style */
+  font-weight: bold;
+}
+
+#present-today, #absent-today {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+/* ▲▲▲ NEW STYLES END HERE ▲▲▲ */
+
+/* Existing styles below - DON'T CHANGE THESE */
+.paid-label {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.paid-label {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.pending-label {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+#paid-count, #unpaid-count {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Student Form Styles */
+.student-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.student-form h3 {
+  color: #1A5276;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  position: relative;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+.form-group input:valid:not(:placeholder-shown) {
+  border-color: #28a745;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+}
+
+.form-group input:invalid:not(:placeholder-shown) + .error-message,
+.form-group select:invalid + .error-message {
+  display: block;
+}
+
+#add-student-form button {
+  background: #1A5276;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+#add-student-form button:hover {
+  background: #2980B9;
+}
+
+/* Table Styles */
+.student-list, .attendance-section, .summary-section, .route-list {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background: #1A5276;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+tr:nth-child(even) {
+  background: #f0f7fc;
+}
+
+tr:hover {
+  background: #e6f2ff;
+}
+
+.paid {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.unpaid {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+button {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
+
+/* Attendance Styles */
+.attendance-section {
+  margin-top: 20px;
+}
+
+.attendance-controls {
+  margin: 15px 0;
+  display: flex;
+  gap: 10px;
+}
+
+#attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#attendance-table th {
+  background: #1A5276;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+#attendance-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.attendance-btn {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.attendance-btn.present {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.attendance-btn.present.active {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.attendance-btn.absent {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.attendance-btn.absent.active {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+/* Summary Report Styles */
+.summary-section {
+  padding: 20px;
+}
+
+.report-controls {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.report-controls > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.report-controls label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #1A5276;
+}
+
+.report-controls select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.report-controls button {
+  padding: 8px 16px;
+  background: #1A5276;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.report-results {
+  margin-top: 20px;
+}
+
+.report {
+  display: none;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.report h3 {
+  color: #1A5276;
+  margin-top: 0;
+}
+
+#attendance-summary-table, 
+#payment-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#attendance-summary-table th, 
+#payment-summary-table th {
+  background: #1A5276;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+#attendance-summary-table td, 
+#payment-summary-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+#attendance-summary-table tr:nth-child(even), 
+#payment-summary-table tr:nth-child(even) {
+  background: #f0f7fc;
+}
+
+.high-attendance {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.medium-attendance {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.low-attendance {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Route Management Styles */
+.route-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.route-card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 200px;
+}
+
+.route-card h4 {
+  color: #1A5276;
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.route-stat {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.route-stat-value {
+  font-weight: bold;
+}
+
+.route-stat-label {
+  color: #666;
+}
+
+.route-form {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#route-table {
+  margin-top: 20px;
+}
+
+.route-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.route-actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.view-route-btn {
+  background: #1A5276;
+  color: white;
+}
+
+.edit-route-btn {
+  background: #ffc107;
+  color: #212529;
+}
+
+.delete-route-btn {
+  background: #dc3545;
+  color: white;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 25px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 700px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: black;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #1A5276;
+  margin-bottom: 5px;
+}
+
+.attendance-history {
+  margin-top: 30px;
+}
+
+#attendance-history-table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+#attendance-history-table th {
+  background: #1A5276;
+  color: white;
+  padding: 10px;
+}
+
+#attendance-history-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Date Display */
+.date-display {
+  font-size: 1.2rem;
+  color: #1A5276;
+  margin: -15px 0 20px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #F7DC6F;
+  color: #1A5276;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  margin-top: 20px;
+  border-radius: 0 0 10px 10px;
+}
